@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import "bulma/css/bulma.css";
 import Countries from "./view/Countries.vue";
 
 export default {
