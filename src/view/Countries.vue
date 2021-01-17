@@ -1,6 +1,14 @@
 <template>
-  <div>
-    {{ countries }}
+  <div class="container is-fluid">
+    <div class="columns is-multiline">
+      <div
+        class="column is-one-third-desktop is-half-tablet is-one-quarter-fullhd"
+        v-for="item in countries"
+        :key="item.name"
+      >
+        {{ item.name }}
+      </div>
+    </div>
   </div>
 </template>
 
