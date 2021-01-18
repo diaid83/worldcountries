@@ -10,7 +10,7 @@
       >
         <header class="modal-header" id="modalTitle">
           <slot name="header">
-            {{ countryData }}
+            {{ countryData.name }}
             <button
               type="button"
               class="btn-green"

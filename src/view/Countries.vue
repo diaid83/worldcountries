@@ -65,6 +65,7 @@
             v-show="isModalVisible"
             @close="closeModal"
             :countryData="countryData"
+            v-if="countryData"
           />
         </div>
       </div>
