@@ -7,15 +7,12 @@
           v-for="(country, index) in countries"
           :key="index"
         >
-          <div class="card">
+          <div class="card" @click="showModal(country)">
             <div class="card-image">
               <figure class="image is-3by2 m-5">
                 <img :src="country.flag" alt="flag" />
               </figure>
             </div>
-            <button type="button" class="btn" @click="showModal">
-              Open Modal!
-            </button>
 
             <div class="card-content has-text-justified">
               <div class="columns is-mobile">
@@ -64,7 +61,11 @@
               </div>
             </div>
           </div>
-          <CountryModal v-show="isModalVisible" @close="closeModal" />
+          <CountryModal
+            v-show="isModalVisible"
+            @close="closeModal"
+            :countryData="countryData"
+          />
         </div>
       </div>
     </div>
@@ -82,11 +83,14 @@ export default {
   data() {
     return {
       isModalVisible: false,
+      countryData: null,
     };
   },
   methods: {
-    showModal() {
+    showModal(country) {
+      this.countryData = country;
       this.isModalVisible = true;
+      console.log("country", country);
     },
     closeModal() {
       this.isModalVisible = false;
