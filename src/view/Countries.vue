@@ -13,6 +13,9 @@
                 <img :src="country.flag" alt="flag" />
               </figure>
             </div>
+            <button type="button" class="btn" @click="showModal">
+              Open Modal!
+            </button>
 
             <div class="card-content has-text-justified">
               <div class="columns is-mobile">
@@ -61,6 +64,7 @@
               </div>
             </div>
           </div>
+          <CountryModal v-show="isModalVisible" @close="closeModal" />
         </div>
       </div>
     </div>
@@ -68,10 +72,28 @@
 </template>
 
 <script>
+import CountryModal from "../components/CountryModal";
+
 export default {
   name: "Countries",
+  components: {
+    CountryModal,
+  },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+  },
   computed: {
-    getcountries() {
+    getCountries() {
       return this.$store.getters.allCountries;
     },
     countries() {
