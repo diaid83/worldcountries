@@ -5,6 +5,9 @@ A small responsive app build with Vue, Vuex, Axios and Bulma. It calls the restc
 clone the project to your local drive with 
 git clone https://github.com/diaid83/worldcountries
 
+go inside the project with
+cd worldcountries
+
 install the packages with
 npm install
 
