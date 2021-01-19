@@ -1,11 +1,11 @@
 
 <template>
-  <div>
+  <transition name="pop">
     <div class="modal">
       <div class="modal-background" @click="close"></div>
 
       <div class="modal-card">
-        <div class="card-image">
+        <div class="card-image" v-show="countryData.flag">
           <figure class="image is-3by2 m-5">
             <img :src="countryData.flag" alt="flag" />
           </figure>
@@ -282,7 +282,7 @@
         aria-label="close"
       ></button>
     </div>
-  </div>
+  </transition>
 </template> 
 
 <script>
@@ -292,7 +292,6 @@ export default {
   methods: {
     close() {
       this.$emit("close");
-      window.scrollTo(0, 0);
     },
   },
 };
@@ -327,4 +326,15 @@ export default {
 }
 
 /* ---------------------------------- */
+
+.pop-enter-active,
+.pop-leave-active {
+  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+}
+
+.pop-enter,
+.pop-leave-to {
+  opacity: 0;
+  transform: scale(0.3) translateY(-50%);
+}
 </style>
