@@ -15,6 +15,10 @@ start the project with
 npm run serve
 
 it is now available in your browser on http://localhost:8080/
+
+
+
+the live version can be seen [here](https://diaid83.github.io/countries/)
 ```
 
 
