@@ -76,6 +76,8 @@
 <script>
 import CountryModal from "../components/CountryModal";
 
+var html = document.querySelector("html");
+
 export default {
   name: "Countries",
   components: {
@@ -91,10 +93,12 @@ export default {
     showModal(country) {
       this.countryData = country;
       this.isModalVisible = true;
+      html.classList.add("is-clipped");
       console.log("country", country);
     },
     closeModal() {
       this.isModalVisible = false;
+      html.classList.remove("is-clipped");
     },
   },
   computed: {
@@ -110,3 +114,10 @@ export default {
   },
 };
 </script>
+
+<style >
+.card {
+  background-color: bisque;
+  cursor: pointer;
+}
+</style>

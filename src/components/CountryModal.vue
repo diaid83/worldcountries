@@ -1,30 +1,73 @@
 
 <template>
-  <transition name="modal-fade">
-    <div class="modal-backdrop">
-      <div
-        class="modal"
-        role="dialog"
-        aria-labelledby="modalTitle"
-        aria-describedby="modalDescription"
-      >
-        <header class="modal-header" id="modalTitle">
-          <slot name="header">
-            {{ countryData.name }}
-            <button
-              type="button"
-              class="btn-green"
-              @click="close"
-              aria-label="Close modal"
-            >
-              Close me!
-            </button>
-          </slot>
-        </header>
+  <div>
+    <div class="modal">
+      <div class="modal-background" @click="close"></div>
+      <div class="modal-content">
+        <div class="modal-card">
+          <div class="card-image">
+            <figure class="image is-3by2 m-5">
+              <img :src="countryData.flag" alt="flag" />
+            </figure>
+          </div>
+
+          <div class="card-content has-text-justified">
+            <div class="columns is-mobile">
+              <h4 class="column is-4 is-half-mobile">Country:</h4>
+              <div class="column has-text-right-mobile">
+                {{ countryData.name }}
+              </div>
+            </div>
+
+            <div class="columns is-mobile">
+              <div class="column is-4">Capital:</div>
+              <div class="column has-text-right-mobile">
+                {{ countryData.capital }}
+              </div>
+            </div>
+
+            <div class="columns is-mobile">
+              <div class="column is-4">Region:</div>
+              <div class="column has-text-right-mobile">
+                {{ countryData.region }}
+              </div>
+            </div>
+
+            <div class="columns is-multiline is-mobile">
+              <div class="column is-4">
+                <p>Timezones:</p>
+              </div>
+              <div class="column is-8 has-text-right-mobile">
+                <div
+                  v-for="(item, i) in countryData.timezones"
+                  :key="`item-${i}`"
+                >
+                  {{ item }}
+                </div>
+              </div>
+            </div>
+
+            <div class="columns is-mobile">
+              <div class="column is-4">Population:</div>
+              <div class="column has-text-right-mobile">
+                <div v-if="countryData.population > 1000">
+                  {{ Math.round(countryData.population / 1000) }}K
+                </div>
+                <div v-else>{{ countryData.population }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <button
+        class="modal-close is-large"
+        @click="close"
+        aria-label="close"
+      ></button>
     </div>
-  </transition>
-</template>
+  </div>
+</template> 
 
 <script>
 export default {
@@ -38,62 +81,34 @@ export default {
 };
 </script>
 <style>
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .modal {
-  background: #ffffff;
-  box-shadow: 2px 2px 20px 1px;
-  overflow-x: auto;
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 2px 20px 1px;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  overflow: hidden;
 }
-
-.modal-header,
-.modal-footer {
-  padding: 15px;
-  display: flex;
-}
-
-.modal-header {
-  border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
-  justify-content: space-between;
-}
-
-.modal-footer {
-  border-top: 1px solid #eeeeee;
-  justify-content: flex-end;
-}
-
-.modal-body {
-  position: relative;
-  padding: 20px 10px;
-}
-
-.btn-close {
-  border: none;
-  font-size: 20px;
-  padding: 20px;
+.modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #2c3e50;
+  opacity: 0.1;
   cursor: pointer;
-  font-weight: bold;
-  color: #4aae9b;
-  background: transparent;
+}
+.modal-content {
+  max-height: 80vh;
+  max-width: 90vw;
+}
+.modal-card {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: bisque;
 }
 
-.btn-green {
-  color: white;
-  background: #4aae9b;
-  border: 1px solid #4aae9b;
-  border-radius: 2px;
-}
+/* ---------------------------------- */
 </style>
