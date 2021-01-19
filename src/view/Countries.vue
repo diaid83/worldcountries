@@ -8,35 +8,38 @@
           :key="index"
         >
           <div class="card" @click="showModal(country)">
-            <div class="card-image">
+            <div class="card-image" v-show="country.flag">
               <figure class="image is-3by2 m-5">
                 <img :src="country.flag" alt="flag" />
               </figure>
             </div>
 
             <div class="card-content has-text-justified">
-              <div class="columns is-mobile">
+              <div class="columns is-mobile" v-show="country.name">
                 <h4 class="column is-4 is-half-mobile">Country:</h4>
                 <div class="column has-text-right-mobile">
                   {{ country.name }}
                 </div>
               </div>
 
-              <div class="columns is-mobile">
+              <div class="columns is-mobile" v-show="country.capital">
                 <div class="column is-4">Capital:</div>
                 <div class="column has-text-right-mobile">
                   {{ country.capital }}
                 </div>
               </div>
 
-              <div class="columns is-mobile">
+              <div class="columns is-mobile" v-show="country.region">
                 <div class="column is-4">Region:</div>
                 <div class="column has-text-right-mobile">
                   {{ country.region }}
                 </div>
               </div>
 
-              <div class="columns is-multiline is-mobile">
+              <div
+                class="columns is-multiline is-mobile"
+                v-show="country.timezones"
+              >
                 <div class="column is-4">
                   <p>Timezones:</p>
                 </div>
@@ -50,7 +53,7 @@
                 </div>
               </div>
 
-              <div class="columns is-mobile">
+              <div class="columns is-mobile" v-show="country.population">
                 <div class="column is-4">Population:</div>
                 <div class="column has-text-right-mobile">
                   <div v-if="country.population > 1000">
@@ -61,15 +64,15 @@
               </div>
             </div>
           </div>
-          <CountryModal
-            v-show="isModalVisible"
-            @close="closeModal"
-            :countryData="countryData"
-            v-if="countryData"
-          />
         </div>
       </div>
     </div>
+    <CountryModal
+      :countryData="countryData"
+      v-show="isModalVisible"
+      @close="closeModal"
+      v-if="countryData"
+    />
   </div>
 </template>
 
@@ -94,7 +97,6 @@ export default {
       this.countryData = country;
       this.isModalVisible = true;
       html.classList.add("is-clipped");
-      console.log("country", country);
     },
     closeModal() {
       this.isModalVisible = false;
