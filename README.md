@@ -12,8 +12,16 @@ start the project with
 npm run serve
 
 it is now available in your browser on http://localhost:8080/
+
+
+start testing with
+npm test
+
+
 ```
 
 
+### Live version
+See [https://diaid83.github.io/countries/](https://diaid83.github.io/countries/).
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
