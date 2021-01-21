@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const actions = {
-  getCountries({ commit }) {
-    axios
-      .get('https://restcountries.eu/rest/v2/all')
+  async getCountries({ commit }) {
+    const url = 'https://restcountries.eu/rest/v2/all';
+    await axios
+      .get(url)
       .then((response) => {
-        console.log('response.data', response.data);
         commit('SET_COUNTRIES', response.data);
       })
       .catch((error) => {
